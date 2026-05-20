@@ -1,10 +1,10 @@
-# Customer Segmentation \& Cohort Analysis
+# Customer Segmentation & Cohort Analysis
 
 ### RFM-Based Customer Value Tiering for Retail E-commerce
 
 
 
- 📊 **Tableau Dashboard:** \[Customer Segmentation \& Cohort Analysis](https://public.tableau.com/app/profile/dilsha.alex/viz/CustomerSegmentationCohortAnalysisDashbaord/Dashboard)
+ 📊 **Tableau Dashboard:** [Customer Segmentation & Cohort Analysis](https://public.tableau.com/app/profile/dilsha.alex/viz/CustomerSegmentationCohortAnalysisDashbaord/Dashboard)
 
 
 
@@ -14,7 +14,7 @@
 2. [Dataset](#2-dataset)
 3. [Project Structure](#3-project-structure)
 4. [Running Instructions](#4-running-instructions)
-5. [Approach \& Methodology](#5-approach--methodology)
+5. [Approach & Methodology](#5-approach--methodology)
 6. [Core Code Snippets](#6-core-code-snippets)
 7. [Results](#7-results)
 8. [Tableau Dashboard Guide](#8-tableau-dashboard-guide)
@@ -22,7 +22,7 @@
 
 
 
-## 1\. Problem Statement
+## 1. Problem Statement
 
 Retail businesses lose 20–30% of their customer base annually. Marketing budgets that treat all customers identically waste spend on one-time buyers while under-investing in high-value repeat customers.
 
@@ -30,63 +30,63 @@ Retail businesses lose 20–30% of their customer base annually. Marketing budge
 
 > Can we segment customers by purchasing behaviour to identify who deserves retention investment, who is at risk of churning, and who has already lapsed — so marketing spend can be allocated accordingly?
 
-**Approach:** Apply RFM (Recency, Frequency, Monetary) segmentation and monthly cohort retention analysis to \~500,000 UK retail transactions, producing four actionable customer tiers with tailored retention strategies per tier.
+**Approach:** Apply RFM (Recency, Frequency, Monetary) segmentation and monthly cohort retention analysis to ~500,000 UK retail transactions, producing four actionable customer tiers with tailored retention strategies per tier.
 
 **Role relevance:** Data Analyst
 
 
 
-## 2\. Dataset
+## 2. Dataset
 
 **Source:** [UCI Online Retail II](https://archive.ics.uci.edu/dataset/502/online+retail+ii)
 
 |**Property**|**Detail**|
 |-|-|
-|Records|\~541,910 transactions (Year 2010–2011 sheet)|
+|Records|~541,910 transactions (Year 2010–2011 sheet)|
 |Period|December 2010 – December 2011|
-|Customers|\~3,920 unique UK customers (after cleaning)|
+|Customers|~3,920 unique UK customers (after cleaning)|
 |Key Fields|Invoice, StockCode, Quantity, InvoiceDate, Price, Customer ID, Country|
 
-**Download:** Visit the UCI link above → download `online\_retail\_II.xlsx` → place in project root.
+**Download:** Visit the UCI link above → download `online_retail_II.xlsx` → place in project root.
 
 
 
-## 3\. Project Structure
+## 3. Project Structure
 
 ```
-01\_customer\_segmentation/
+01_customer_segmentation/
 │
 ├── README.md
 ├── requirements.txt
 │
 ├── src/                                 ← Primary pipeline (Python)
-│   ├── 01\_load\_data.py             ← Load Excel → PostgreSQL
-│   ├── 02\_clean\_and\_rfm.py         ← Clean data + compute RFM in Python
-│   ├── 03\_cohort\_analysis.py       ← Build cohort retention table
-│   ├── 04\_kmeans\_clustering.py     ← K-Means validation + charts
-│   └── 05\_export\_tableau\_data.py   ← Export CSVs for Tableau Public
+│   ├── 01_load_data.py             ← Load Excel → PostgreSQL
+│   ├── 02_clean_and_rfm.py         ← Clean data + compute RFM in Python
+│   ├── 03_cohort_analysis.py       ← Build cohort retention table
+│   ├── 04_kmeans_clustering.py     ← K-Means validation + charts
+│   └── 05_export_tableau_data.py   ← Export CSVs for Tableau Public
 │
 ├── sql/                                 ← Alternative pipeline (SQL reference)
-│   ├── 01\_create\_schema.sql        ← Create all PostgreSQL tables
-│   ├── 02\_clean\_data.sql           ← Clean raw → cleaned\_transactions
-│   ├── 03\_rfm\_aggregation.sql      ← Compute RFM + segment labels
-│   ├── 04\_cohort\_analysis.sql      ← Build cohort retention table
-│   └── 05\_export\_for\_tableau.sql   ← Export CSVs via psql COPY
+│   ├── 01_create_schema.sql        ← Create all PostgreSQL tables
+│   ├── 02_clean_data.sql           ← Clean raw → cleaned_transactions
+│   ├── 03_rfm_aggregation.sql      ← Compute RFM + segment labels
+│   ├── 04_cohort_analysis.sql      ← Build cohort retention table
+│   └── 05_export_for_tableau.sql   ← Export CSVs via psql COPY
 │
 ├── notebooks/
-│   └── customer\_segmentation\_rfm.ipynb  ← Interactive full pipeline
+│   └── customer_segmentation_rfm.ipynb  ← Interactive full pipeline
 │
 └── outputs/
-    └── tableau\_exports/            ← CSVs for Tableau Public
-        ├── rfm\_segments.csv
-        ├── segment\_summary.csv
-        ├── cohort\_retention.csv
-        └── avg\_retention\_curve.csv
+    └── tableau_exports/            ← CSVs for Tableau Public
+        ├── rfm_segments.csv
+        ├── segment_summary.csv
+        ├── cohort_retention.csv
+        └── avg_retention_curve.csv
 ```
 
 
 
-## 4\. Running Instructions
+## 4. Running Instructions
 
 ### Prerequisites
 
@@ -95,19 +95,19 @@ Retail businesses lose 20–30% of their customer base annually. Marketing budge
 pip install -r requirements.txt
 
 # 2. Create PostgreSQL database
-createdb retail\_db
+createdb retail_db
 
-# 3. Place online\_retail\_II.xlsx in the project root
+# 3. Place online_retail_II.xlsx in the project root
 ```
 
 ### Run Pipeline (Python — recommended)
 
 ```bash
-python src/01\_load\_data.py           # Load Excel data into PostgreSQL
-python src/02\_clean\_and\_rfm.py       # Clean + compute RFM scores
-python src/03\_cohort\_analysis.py     # Build cohort retention table
-python src/04\_kmeans\_clustering.py   # Validate with K-Means, save charts
-python src/05\_export\_tableau\_data.py # Export CSVs for Tableau
+python src/01_load_data.py           # Load Excel data into PostgreSQL
+python src/02_clean_and_rfm.py       # Clean + compute RFM scores
+python src/03_cohort_analysis.py     # Build cohort retention table
+python src/04_kmeans_clustering.py   # Validate with K-Means, save charts
+python src/05_export_tableau_data.py # Export CSVs for Tableau
 ```
 
 ### Alternative: Run via SQL (reference only)
@@ -115,29 +115,29 @@ python src/05\_export\_tableau\_data.py # Export CSVs for Tableau
 > The SQL scripts cover the same cleaning and aggregation logic as Python and are provided as a reference for the database layer. They do not replace the Python pipeline — K-Means clustering and chart generation require Python.
 
 ```bash
-# Prerequisite: Python pipeline step 01 must have run first to populate raw\_transactions
-psql -d retail\_db -f sql/01\_create\_schema.sql
-psql -d retail\_db -f sql/02\_clean\_data.sql
-psql -d retail\_db -f sql/03\_rfm\_aggregation.sql
-psql -d retail\_db -f sql/04\_cohort\_analysis.sql
-psql -d retail\_db -f sql/05\_export\_for\_tableau.sql
+# Prerequisite: Python pipeline step 01 must have run first to populate raw_transactions
+psql -d retail_db -f sql/01_create_schema.sql
+psql -d retail_db -f sql/02_clean_data.sql
+psql -d retail_db -f sql/03_rfm_aggregation.sql
+psql -d retail_db -f sql/04_cohort_analysis.sql
+psql -d retail_db -f sql/05_export_for_tableau.sql
 ```
 
 ### Or run interactively
 
 ```bash
-jupyter notebook notebooks/customer\_segmentation\_rfm.ipynb
+jupyter notebook notebooks/customer_segmentation_rfm.ipynb
 ```
 
 ### Environment variable (optional)
 
 ```bash
-export DATABASE\_URL="postgresql://user:password@localhost:5432/retail\_db"
+export DATABASE_URL="postgresql://user:password@localhost:5432/retail_db"
 ```
 
 
 
-## 5\. Approach \& Methodology
+## 5. Approach & Methodology
 
 ```
 Raw Transactions (Excel)
@@ -188,70 +188,70 @@ Raw Transactions (Excel)
 
 
 
-## 6\. Core Code Snippets
+## 6. Core Code Snippets
 
 ### RFM Computation
 
 ```python
-SNAPSHOT\_DATE = pd.Timestamp('2011-12-10')
+SNAPSHOT_DATE = pd.Timestamp('2011-12-10')
 
 rfm = (
     df.groupby('Customer ID')
     .agg(
-        last\_purchase  = ('InvoiceDate', 'max'),
+        last_purchase  = ('InvoiceDate', 'max'),
         frequency      = ('Invoice',     'nunique'),   # unique orders, not rows
-        monetary\_value = ('Revenue',     'sum')
+        monetary_value = ('Revenue',     'sum')
     )
-    .reset\_index()
+    .reset_index()
 )
-rfm\['recency\_days'] = (SNAPSHOT\_DATE - rfm\['last\_purchase']).dt.days
+rfm['recency_days'] = (SNAPSHOT_DATE - rfm['last_purchase']).dt.days
 ```
 
-### Quartile Scoring \& Segment Assignment
+### Quartile Scoring & Segment Assignment
 
 ```python
 # R: lower days = better → reversed labels
-rfm\_s\['R\_score'] = pd.qcut(rfm\_s\['recency\_days'], q=4,
-                            labels=\[4,3,2,1], duplicates='drop').astype(int)
+rfm_s['R_score'] = pd.qcut(rfm_s['recency_days'], q=4,
+                            labels=[4,3,2,1], duplicates='drop').astype(int)
 
 # F: rank first to handle integer ties
-rfm\_s\['F\_score'] = pd.qcut(rfm\_s\['frequency'].rank(method='first'), q=4,
-                            labels=\[1,2,3,4], duplicates='drop').astype(int)
+rfm_s['F_score'] = pd.qcut(rfm_s['frequency'].rank(method='first'), q=4,
+                            labels=[1,2,3,4], duplicates='drop').astype(int)
 
 # M: higher = better
-rfm\_s\['M\_score'] = pd.qcut(rfm\_s\['monetary\_value'], q=4,
-                            labels=\[1,2,3,4], duplicates='drop').astype(int)
+rfm_s['M_score'] = pd.qcut(rfm_s['monetary_value'], q=4,
+                            labels=[1,2,3,4], duplicates='drop').astype(int)
 
-rfm\_s\['RFM\_total'] = rfm\_s\['R\_score'] + rfm\_s\['F\_score'] + rfm\_s\['M\_score']
+rfm_s['RFM_total'] = rfm_s['R_score'] + rfm_s['F_score'] + rfm_s['M_score']
 
-def assign\_segment(score):
+def assign_segment(score):
     if score >= 10: return 'Champions'
     elif score >= 7: return 'Loyal'
     elif score >= 4: return 'At-Risk'
     else:            return 'Dormant'
 
-rfm\_s\['segment'] = rfm\_s\['RFM\_total'].apply(assign\_segment)
+rfm_s['segment'] = rfm_s['RFM_total'].apply(assign_segment)
 ```
 
 ### Cohort Retention
 
 ```python
-df\['order\_month']  = df\['InvoiceDate'].dt.to\_period('M')
-cohort\_map         = df.groupby('Customer ID')\['order\_month'].min()
-df\['cohort\_month'] = df\['Customer ID'].map(cohort\_map)
-df\['cohort\_index'] = (df\['order\_month'] - df\['cohort\_month']).apply(lambda x: x.n)
+df['order_month']  = df['InvoiceDate'].dt.to_period('M')
+cohort_map         = df.groupby('Customer ID')['order_month'].min()
+df['cohort_month'] = df['Customer ID'].map(cohort_map)
+df['cohort_index'] = (df['order_month'] - df['cohort_month']).apply(lambda x: x.n)
 
 retention = (
-    df.groupby(\['cohort\_month', 'cohort\_index'])\['Customer ID'].nunique()
+    df.groupby(['cohort_month', 'cohort_index'])['Customer ID'].nunique()
     .unstack()
-    .pipe(lambda x: x.divide(x\[0], axis=0))
+    .pipe(lambda x: x.divide(x[0], axis=0))
     .mul(100).round(1)
 )
 ```
 
 
 
-## 7\. Results
+## 7. Results
 
 ### Segment Summary
 
@@ -268,11 +268,11 @@ retention = (
 
 ```
 Month 0  → 100%   (first purchase — by definition)
-Month 1  →  \~21%  ← sharpest drop; highest-leverage intervention window
-Month 2  →  \~22%
-Month 3  →  \~23%
-Month 6  →  \~25%
-Month 11 →  \~31%
+Month 1  →  ~21%  ← sharpest drop; highest-leverage intervention window
+Month 2  →  ~22%
+Month 3  →  ~23%
+Month 6  →  ~25%
+Month 11 →  ~31%
 ```
 
 ### K-Means Validation
@@ -283,16 +283,16 @@ Month 11 →  \~31%
 
 
 
-## 8\. Tableau Dashboard Guide
+## 8. Tableau Dashboard Guide
 
 ### Files to connect in Tableau Public
 
 |**CSV File**|**Used for**|
 |-|-|
-|`rfm\_segments.csv`|Individual customer RFM view|
-|`segment\_summary.csv`|Bar charts, segment overview|
-|`cohort\_retention.csv`|Cohort retention heatmap|
-|`avg\_retention\_curve.csv`|Retention decay line chart|
+|`rfm_segments.csv`|Individual customer RFM view|
+|`segment_summary.csv`|Bar charts, segment overview|
+|`cohort_retention.csv`|Cohort retention heatmap|
+|`avg_retention_curve.csv`|Retention decay line chart|
 
 ### Dashboard sheets
 
@@ -303,11 +303,11 @@ Month 11 →  \~31%
 
 
 
-## 9\. Business Conclusions
+## 9. Business Conclusions
 
 1. **58% of customers (Champions + Loyal) generate 92% of revenue.** Champions and Loyal segments deliver disproportionate return — equal-treatment marketing campaigns leave significant retention ROI unrealised.
 2. **At-Risk segment (35% of customers) represents recoverable revenue.** These customers purchased regularly but have not returned in 60–150 days. A targeted win-back campaign before the 90-day mark is the optimal intervention window.
-3. **Month 0→1 is the single highest-leverage retention moment.** Retention drops sharply from 100% to \~21% after the first purchase. An early follow-up offer within 7–14 days is the most cost-effective intervention available.
+3. **Month 0→1 is the single highest-leverage retention moment.** Retention drops sharply from 100% to ~21% after the first purchase. An early follow-up offer within 7–14 days is the most cost-effective intervention available.
 4. **Dormant customers (7%) show very low re-engagement potential.** Excluding them from paid campaigns reduces wasted spend and allows budget reallocation to higher-value segments.
 
 ### Recommended Actions
