@@ -2,15 +2,11 @@
 
 ### RFM-Based Customer Value Tiering for Retail E-commerce
 
-!\[Python](https://img.shields.io/badge/Python-3.10-blue?logo=python\&logoColor=white)
-!\[PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql\&logoColor=white)
-!\[scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-F7931E?logo=scikit-learn\&logoColor=white)
-!\[Tableau](https://img.shields.io/badge/Tableau-Public-E97627?logo=tableau\&logoColor=white)
-!\[Status](https://img.shields.io/badge/Status-Complete-brightgreen)
 
-> 📊 \*\*Tableau Dashboard:\*\* \[Customer Segmentation \& Cohort Analysis](https://public.tableau.com/app/profile/dilsha.alex/viz/CustomerSegmentationCohortAnalysisDashbaord/Dashboard)
 
-\---
+ 📊 **Tableau Dashboard:** \[Customer Segmentation \& Cohort Analysis](https://public.tableau.com/app/profile/dilsha.alex/viz/CustomerSegmentationCohortAnalysisDashbaord/Dashboard)
+
+
 
 ## Table of Contents
 
@@ -24,7 +20,7 @@
 8. [Tableau Dashboard Guide](#8-tableau-dashboard-guide)
 9. [Business Conclusions](#9-business-conclusions)
 
-\---
+
 
 ## 1\. Problem Statement
 
@@ -38,7 +34,7 @@ Retail businesses lose 20–30% of their customer base annually. Marketing budge
 
 **Role relevance:** Data Analyst
 
-\---
+
 
 ## 2\. Dataset
 
@@ -53,7 +49,7 @@ Retail businesses lose 20–30% of their customer base annually. Marketing budge
 
 **Download:** Visit the UCI link above → download `online\_retail\_II.xlsx` → place in project root.
 
-\---
+
 
 ## 3\. Project Structure
 
@@ -88,7 +84,7 @@ Retail businesses lose 20–30% of their customer base annually. Marketing budge
         └── avg\_retention\_curve.csv
 ```
 
-\---
+
 
 ## 4\. Running Instructions
 
@@ -139,7 +135,7 @@ jupyter notebook notebooks/customer\_segmentation\_rfm.ipynb
 export DATABASE\_URL="postgresql://user:password@localhost:5432/retail\_db"
 ```
 
-\---
+
 
 ## 5\. Approach \& Methodology
 
@@ -190,7 +186,7 @@ Raw Transactions (Excel)
 |Score thresholds: ≥10 Champions, ≥7 Loyal, ≥4 At-Risk, else Dormant|Based on RFM total (3–12 range); thresholds reflect natural score clusters|
 |Walk-forward cohort indexing|Each cohort only compared to itself; prevents cross-cohort size bias|
 
-\---
+
 
 ## 6\. Core Code Snippets
 
@@ -253,7 +249,7 @@ retention = (
 )
 ```
 
-\---
+
 
 ## 7\. Results
 
@@ -285,7 +281,7 @@ Month 11 →  \~31%
 * Silhouette score at k=4: **0.561**
 * K-Means confirms score-based segment boundaries reflect natural clusters in the data
 
-\---
+
 
 ## 8\. Tableau Dashboard Guide
 
@@ -305,7 +301,7 @@ Month 11 →  \~31%
 3. **Cohort Retention Heatmap** — cohort month (rows) × months since acquisition (cols), colour = retention %
 4. **Average Retention Curve** — line chart of avg retention % by months since first purchase
 
-\---
+
 
 ## 9\. Business Conclusions
 
@@ -329,7 +325,7 @@ Month 11 →  \~31%
 * Add CLV (Customer Lifetime Value) prediction using a BG/NBD probabilistic model
 * Schedule weekly RFM refresh as an Airflow DAG for always-current segment membership
 
-\---
+
 
 
 
